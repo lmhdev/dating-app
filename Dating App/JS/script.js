@@ -1,21 +1,21 @@
 // Wrap every letter in a span
-var textWrapper = document.querySelector('.ml9 .letters');
-textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+// var textWrapper = document.querySelector('.ml9 .letters');
+// textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
 
-anime.timeline({loop: true})
-  .add({
-    targets: '.ml9 .letter',
-    scale: [0, 1],
-    duration: 1500,
-    elasticity: 600,
-    delay: (el, i) => 45 * (i+1)
-  }).add({
-    targets: '.ml9',
-    opacity: 0,
-    duration: 1000,
-    easing: "easeOutExpo",
-    delay: 1000
-  });
+// anime.timeline({loop: true})
+//   .add({
+//     targets: '.ml9 .letter',
+//     scale: [0, 1],
+//     duration: 1500,
+//     elasticity: 600,
+//     delay: (el, i) => 45 * (i+1)
+//   }).add({
+//     targets: '.ml9',
+//     opacity: 0,
+//     duration: 1000,
+//     easing: "easeOutExpo",
+//     delay: 1000
+//   });
   
   
 
@@ -86,3 +86,17 @@ function closeNavBar(){
     count=0;
   }
 }
+
+
+////HOME PAGE////
+
+let btnHomeBurger = document.querySelector("#nav-home-hamburger");
+let navBarHome = document.querySelector(".nav-home");
+let btnSearchHome = document.querySelector(".fa-search");
+
+btnHomeBurger.onclick = function() {
+  navBarHome.classList.toggle("active");
+};
+btnSearchHome.onclick = function() {
+  navBarHome.classList.toggle("active");
+};
