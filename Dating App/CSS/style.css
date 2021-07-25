@@ -945,7 +945,7 @@ body{
 
 .home-content {
     position: relative;
-    background: linear-gradient(to right, #f8d1ff 0%, #bd86c7 100%);
+    background: linear-gradient(to right, #5d5a6d 0%, #cfc5ff 50%);
     height: 100%;
     top: 0;
     left: 78px;
@@ -966,7 +966,7 @@ body{
 .message-container {
     width: 30%;
     height: 100%;
-    background-color: #FFF;
+    background: linear-gradient(to bottom, #ffffff 0%, #999 100%);
     margin: 0;
     padding-top: 10px;
 }
@@ -979,7 +979,7 @@ body{
 
 .match-list {
     height: 15%;
-    background-color: rgb(233, 131, 131);
+    background-color: rgb(230, 230, 230);
     overflow-x: auto;
     display: flex;
     align-items: center;
@@ -995,13 +995,23 @@ body{
 
 .message-list {
     left: 0;
-    padding: 0 20px;
-    
+    padding: 0 15px;
 }
 
 .message-list img {
     float: left;
     margin-right: 12px;
+}
+
+.person {
+    margin: 12px auto;
+    color: rgb(61, 61, 61);
+}
+/* CLEARFIX */
+.person::after {
+    content: "";
+    clear: both;
+    display: table;
 }
 
 .person-name {
@@ -1012,5 +1022,110 @@ body{
 .chat-preview {
     display: block;
     font-size: 14px;
+    overflow: hidden !important; 
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* 2.3 SWIPE AREA */
+.swipe-area-container {
+    width: 60%;
+    height: 100%;
+    position: fixed;
+    right: 5%;
+    top: 0;
+    z-index: 99;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    opacity: 0;
+}
+
+.swipe-area-container.loaded {
+    opacity: 1;
+}
+
+.swipe-area-container img {
+    width: 250px;
+    border-radius: 20px;
+}
+
+.swipe-cards-stack {
+    position: relative;
+    top: -32%;
+    right: 17%;
+}
+
+.swipe-card {
+    display: inline-block;
+    position: absolute;
+    color: #FFF;
     overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    cursor: grab;
+    border-radius: 20px;
+    background-color: #211f2b;
+    padding: 0px 1px 10px 1px;
+}
+
+.swipe-card.moving {
+    transition: none;
+    cursor: grabbing;
+}
+
+.name-wrapper{
+    display: flex;
+}
+
+.card-name {
+    font-size: 1.2rem;
+    padding-left: 10px;
+}
+.card-title {
+    font-size: 0.9rem;
+    padding-left: 10px;
+}
+
+.swipe-card i {
+    color: rgb(66, 142, 255);
+    padding: 5px 0 0 7px;
+    text-align: center;
+}
+
+.y-n-buttons {
+    justify-self: center;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+
+.y-n-buttons button {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    border: 0;
+    margin: 0 150px;
+    cursor: pointer;
+}
+
+#love:hover {
+    background-color: #2D00F7;
+}
+#nope:hover {
+    background-color: #e96cbf;
+}
+
+.y-n-buttons i {
+    font-size: 30px;
+}
+
+.fa-heart {
+    color: #e96cbf;
+}
+  
+.fa-times {
+    color: #24577e;
 }
