@@ -17,8 +17,20 @@ anime.timeline({loop: true})
     delay: 1000
   });
   
-  
 
+  // ELEMENT SELECTORS
+
+let navTop = document.getElementById("nav");
+let navFixed = document.getElementById("navbar");
+let sectionHero = document.querySelector(".container");
+let sectionOne = document.querySelector(".section1");
+let sectionTwo = document.querySelector(".section2");
+let sectionThree = document.querySelector(".section3");
+let sectionFour = document.querySelector(".section4");
+let footer = document.querySelector(".footer");
+let homepageContainer = document.querySelector(".container-homepage");
+
+let landingPageElement = [navTop, navFixed, sectionHero, sectionOne, sectionTwo, sectionThree, sectionFour, footer];
   
   // LANDING PAGE NAVIGATION
 
@@ -28,14 +40,14 @@ function scrollFunction() {
   if (window.matchMedia('screen and (max-width: 768px)').matches){
 
   }else{
-    document.getElementById("navbar").style.top = "0";
-    document.getElementById("nav").style.display = "none";
+    navFixed.style.top = "0";
+    navTop.style.display = "none";
   }} else {
   if (window.matchMedia('screen and (max-width: 768px)').matches){
 
   }else{
-    document.getElementById("navbar").style.top = "-85px";
-    document.getElementById("nav").style.display = "flex";
+    navFixed.style.top = "-85px";
+    navTop.style.display = "flex";
     }
   }
 }
@@ -43,12 +55,12 @@ function scrollFunction() {
 var count=0;
 function opennav(){
   if(count==0){
-    document.getElementById("nav").style.height="200px";
+    navTop.style.height="200px";
     document.getElementById("icon").style.color="#2D00F7";
     document.querySelector(".hamburger").style.display = "flex";
     count++;
   }else{
-    document.getElementById("nav").style.height="79px";
+    navTop.style.height="79px";
     document.getElementById("icon").style.color="#FFF";
     document.querySelector(".hamburger").style.display = "none";
     count=0;
@@ -59,19 +71,19 @@ window.addEventListener('resize', closenav);
 function closenav(){
   if (window.matchMedia('screen and (min-width: 720px)').matches){
     document.querySelector(".hamburger").style.display = "none";
-    document.getElementById("nav").style.height="79px";
+    navTop.style.height="79px";
     count=0;
   }
 }
 
 function openNavBar() {
   if(count==0){
-    document.getElementById("navbar").style.height="200px";
+    navFixed.style.height="200px";
     document.getElementById("icon-navbar").style.color="#2D00F7";
     document.querySelectorAll(".hamburger")[1].style.display = "flex";
     count++;
   }else{
-    document.getElementById("navbar").style.height="75px";
+    navFixed.style.height="75px";
     document.getElementById("icon-navbar").style.color="#FFF";
     document.querySelectorAll(".hamburger")[1].style.display = "none";
     count=0;
@@ -82,9 +94,41 @@ window.addEventListener('resize', closeNavBar);
 function closeNavBar(){
   if (window.matchMedia('screen and (min-width: 720px)').matches){
     document.querySelectorAll(".hamburger")[1].style.display = "none";
-    document.getElementById("navbar").style.height="75px";
+    navFixed.style.height="75px";
     count=0;
   }
 }
 
 
+
+  // TOGGLE DISABLE CLASS
+
+function disableLandingElements(){
+  navTop.style.display = 'none';
+  sectionThree.style.display = 'none';
+  for (var i = 0; i < landingPageElement.length; i++) {
+    landingPageElement[i].classList.add('disable');
+  }
+}
+
+function enableLandingElements(){
+  navTop.style.display = 'flex';
+  sectionThree.style.display = 'flex';
+  for (var i = 0; i < landingPageElement.length; i++) {
+    landingPageElement[i].classList.remove('disable');
+  }
+}
+
+function toggleHomePage(){
+  homepageContainer.classList.toggle('disable');
+}
+
+function login(){
+  disableLandingElements();
+  toggleHomePage();
+}
+
+function logout(){
+  enableLandingElements();
+  toggleHomePage();
+}
