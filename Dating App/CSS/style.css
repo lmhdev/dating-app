@@ -4,7 +4,9 @@ body{
     font-family: 'Poppins', sans-serif;
     }
     
-
+.disable {
+    display: none;
+}
     
     /*DEFAULT*/
     a,textarea,li,button{
@@ -943,6 +945,10 @@ body{
     background: rgb(94, 4, 163);
 }
 
+#logout-btn {
+    margin-top: 140px;
+}
+
 .home-content {
     position: relative;
     background: linear-gradient(to right, #5d5a6d 0%, #cfc5ff 50%);
@@ -965,6 +971,7 @@ body{
 
 .message-container {
     width: 30%;
+    min-width: 230px;
     height: 100%;
     background: linear-gradient(to bottom, #ffffff 0%, #999 100%);
     margin: 0;
@@ -1033,12 +1040,12 @@ body{
     width: 60%;
     height: 100%;
     position: fixed;
-    right: 5%;
+    right: 3%;
     top: 0;
     z-index: 99;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     flex-grow: 1;
     opacity: 0;
@@ -1054,9 +1061,8 @@ body{
 }
 
 .swipe-cards-stack {
-    position: relative;
-    top: -32%;
-    right: 17%;
+    width: 250px;
+    height: 400px;
 }
 
 .swipe-card {
@@ -1068,7 +1074,7 @@ body{
     cursor: grab;
     border-radius: 20px;
     background-color: #211f2b;
-    padding: 0px 1px 10px 1px;
+    padding: 1px 1px 10px 1px;
 }
 
 .swipe-card.moving {
@@ -1107,7 +1113,7 @@ body{
     width: 60px;
     height: 60px;
     border: 0;
-    margin: 0 150px;
+    margin: 20px 10px;
     cursor: pointer;
 }
 
