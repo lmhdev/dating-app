@@ -123,13 +123,13 @@ body{
     
     header .nav{
     position:fixed;
-    top:2.2em;
-    width:85%;
+    top:2em;
+    width:90%;
     box-shadow:0px 6px 16px -6px rgba(1,1,1,0.5);
     background:rgba(240, 0, 136, 0.75);
     border-radius:40px;
     padding:0 20px;
-    transition:0.5s;
+    transition:0.3s;
     border-top:1px solid #d80b1a;
     display: flex;
     justify-content: space-around;
@@ -225,47 +225,7 @@ body{
     cursor:pointer;
     }
 }
-    #navbar {
-    background-color: rgba(240, 0, 136, 0.7);
-    position: fixed;
-    top: -85px;
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    z-index:999;
-    padding: 5px 0px;
-    transition: top 0.3s;
-    box-shadow:0px 6px 16px -6px rgba(1,1,1,0.5);
-    backdrop-filter: blur( 4px );
-    -webkit-backdrop-filter: blur( 4px );
-    }
-    
-    #navbar a {
-    float: left;
-    display: block;
-    color: #FFF;
-    text-align: center;
-    padding: 4px 15px;
-    text-decoration: none;
-    font-size: 17px;
-    font-weight:400;
-    }
 
-    #navbar a img {
-        width: 115px;
-    }
-    
-    #navbar a:hover {
-    color: black;
-    }
-    #navbar .hamburger a:hover {
-        transform: translateX(-5px);
-    }
-    
-    header #navbar .icon{
-        display:none;
-    }
     
     @media (max-width: 1000px){
         .nav a .fas {
@@ -294,13 +254,6 @@ body{
     @media (max-width:720px) {
         header .nav a.link {
             display: none;
-        }
-        header #navbar a.link {
-            display: none;
-        }
-        header #navbar .icon {
-            display: block;
-            cursor: pointer;
         }
     }
     
@@ -1002,7 +955,7 @@ body{
 
 .message-list {
     left: 0;
-    padding: 0 15px;
+    padding: 0;
 }
 
 .message-list img {
@@ -1011,14 +964,21 @@ body{
 }
 
 .person {
-    margin: 12px auto;
+    /* margin: 12px auto; */
+    padding: 10px 0 10px 10px;
     color: rgb(61, 61, 61);
+    cursor: pointer;
 }
 /* CLEARFIX */
 .person::after {
     content: "";
     clear: both;
     display: table;
+}
+
+.person:hover {
+    background-color: #F20089;
+    color: #fff;
 }
 
 .person-name {
@@ -1147,7 +1107,7 @@ body{
     height: 100vh;
     position: absolute;
     background: #f6f5f7;
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -1232,6 +1192,7 @@ body{
     letter-spacing: 1px;
     text-transform: uppercase;
     transition: transform 80ms ease-in;
+    cursor: pointer;
 }
 
 button:active {
@@ -1354,7 +1315,7 @@ button:focus {
 }
 
 .back-btn:hover{
-    font-size: 1.8rem;
+    transform: scale(1.1);
     color: #4900a8;
     cursor: pointer;
 }
