@@ -21,7 +21,6 @@ anime.timeline({loop: true})
   // ELEMENT SELECTORS
 
 let navTop = document.getElementById("nav");
-let navFixed = document.getElementById("navbar");
 let sectionHero = document.querySelector(".container");
 let sectionOne = document.querySelector(".section1");
 let sectionTwo = document.querySelector(".section2");
@@ -30,24 +29,27 @@ let sectionFour = document.querySelector(".section4");
 let footer = document.querySelector(".footer");
 let homepageContainer = document.querySelector(".container-homepage");
 
-let landingPageElement = [navTop, navFixed, sectionHero, sectionOne, sectionTwo, sectionThree, sectionFour, footer];
+let landingPageElement = [navTop, sectionHero, sectionOne, sectionTwo, sectionThree, sectionFour, footer];
   
   // LANDING PAGE NAVIGATION
 
 window.onscroll = function() {scrollFunction()};
 function scrollFunction() {
   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-  if (window.matchMedia('screen and (max-width: 768px)').matches){
-
-  }else{
-    navFixed.style.top = "0";
-    navTop.style.display = "none";
-  }} else {
-  if (window.matchMedia('screen and (max-width: 768px)').matches){
-
-  }else{
-    navFixed.style.top = "-85px";
-    navTop.style.display = "flex";
+    if (window.matchMedia('screen and (max-width: 768px)').matches){
+//// WHEN SCROLLING
+    }else{
+      navTop.style.top = "0px";
+      navTop.style.width = "100%";
+      navTop.style.borderRadius = "0px";
+    }
+  } else {
+    if (window.matchMedia('screen and (max-width: 768px)').matches){
+//// ORIGINAL
+    }else{
+      navTop.style.top = "2em";
+      navTop.style.width = "90%";
+      navTop.style.borderRadius = "40px";
     }
   }
 }
@@ -76,29 +78,6 @@ function closenav(){
   }
 }
 
-function openNavBar() {
-  if(count==0){
-    navFixed.style.height="200px";
-    document.getElementById("icon-navbar").style.color="#2D00F7";
-    document.querySelectorAll(".hamburger")[1].style.display = "flex";
-    count++;
-  }else{
-    navFixed.style.height="75px";
-    document.getElementById("icon-navbar").style.color="#FFF";
-    document.querySelectorAll(".hamburger")[1].style.display = "none";
-    count=0;
-  }
-}
-
-window.addEventListener('resize', closeNavBar);
-function closeNavBar(){
-  if (window.matchMedia('screen and (min-width: 720px)').matches){
-    document.querySelectorAll(".hamburger")[1].style.display = "none";
-    navFixed.style.height="75px";
-    count=0;
-  }
-}
-
 
 
   // TOGGLE DISABLE CLASS
@@ -123,12 +102,77 @@ function toggleHomePage(){
   homepageContainer.classList.toggle('disable');
 }
 
-function login(){
-  disableLandingElements();
-  toggleHomePage();
-}
-
 function logout(){
   enableLandingElements();
   toggleHomePage();
+}
+
+// **************************************************************
+//                    SIGN-IN & LOG-IN PAGE
+// **************************************************************
+
+let signUpButton = document.getElementById('signUp');
+let signInButton = document.getElementById('signIn');
+let loginPageContainer = document.getElementById('login-page-container');
+let loginPageBackground = document.getElementById('login-page-bg');
+let returnToHomeBtn = document.querySelector('.back-btn');
+
+// *******************************
+//     PANEL SWITCH
+// *******************************
+
+signUpButton.addEventListener('click', () =>
+loginPageContainer.classList.add('right-panel-active'));
+
+signInButton.addEventListener('click', () =>
+loginPageContainer.classList.remove('right-panel-active'));
+
+// *******************************
+//     OPEN SIGN-IN & LOG-IN PAGE
+// *******************************
+
+function openSignin(){
+    loginPageContainer.classList.toggle('disable');
+    loginPageBackground.classList.toggle('disable');
+    returnToHomeBtn.classList.toggle('disable');
+    loginPageBackground.style.display = "flex";
+    disableLandingElements();
+}
+
+function openSignUp(){
+  loginPageContainer.classList.toggle('disable');
+  loginPageBackground.classList.toggle('disable');
+  returnToHomeBtn.classList.toggle('disable');
+  loginPageBackground.style.display = "flex";
+  loginPageContainer.classList.add('right-panel-active');
+  disableLandingElements();
+}
+
+// *******************************
+//     BACK TO LANDING PAGE BTN
+// *******************************
+function backToLandingPage(){
+  loginPageContainer.classList.toggle('disable');
+  loginPageBackground.classList.toggle('disable');
+  returnToHomeBtn.classList.toggle('disable');
+  loginPageBackground.style.display = "none";
+  loginPageContainer.classList.remove('right-panel-active');
+  enableLandingElements();
+}
+
+// *******************************
+//     LOG-IN TO HOME PAGE
+// *******************************
+let loginId = document.getElementById("login-id");
+let loginPw = document.getElementById("login-pw");
+
+function signin() {
+  if (loginId.value === "admin@wink" && loginPw.value === "wink1234"){
+    loginPageContainer.classList.toggle('disable');
+    loginPageBackground.classList.toggle('disable');
+    returnToHomeBtn.classList.toggle('disable');
+    loginPageBackground.style.display = "none";
+    loginPageContainer.classList.remove('right-panel-active');
+    toggleHomePage();
+  }
 }
