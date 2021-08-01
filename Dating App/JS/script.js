@@ -28,6 +28,9 @@ let sectionThree = document.querySelector(".section3");
 let sectionFour = document.querySelector(".section4");
 let footer = document.querySelector(".footer");
 let homepageContainer = document.querySelector(".container-homepage");
+let messageContainer = document.querySelector(".message-container");
+let swipeArea = document.querySelector(".swipe-area-container");
+let chatArea = document.querySelector(".right-side-chat");
 
 let landingPageElement = [navTop, sectionHero, sectionOne, sectionTwo, sectionThree, sectionFour, footer];
   
@@ -115,7 +118,7 @@ let signUpButton = document.getElementById('signUp');
 let signInButton = document.getElementById('signIn');
 let loginPageContainer = document.getElementById('login-page-container');
 let loginPageBackground = document.getElementById('login-page-bg');
-let returnToHomeBtn = document.querySelector('.back-btn');
+let returnToHomeBtn = document.querySelector('#login-page-bg .back-btn');
 
 // *******************************
 //     PANEL SWITCH
@@ -157,6 +160,7 @@ function backToLandingPage(){
   returnToHomeBtn.classList.toggle('disable');
   loginPageBackground.style.display = "none";
   loginPageContainer.classList.remove('right-panel-active');
+  loginFailMessage.classList.add("disable");
   enableLandingElements();
 }
 
@@ -165,14 +169,95 @@ function backToLandingPage(){
 // *******************************
 let loginId = document.getElementById("login-id");
 let loginPw = document.getElementById("login-pw");
+let loginFailMessage = document.querySelector('.login-fail');
+let signinToHomeBtn = document.getElementById("signin-auth-btn");
 
-function signin() {
+signinToHomeBtn.addEventListener('click', signin);
+
+function signin(e) {
+  e.preventDefault();
   if (loginId.value === "admin@wink" && loginPw.value === "wink1234"){
+    loginFailMessage.classList.add("disable");
     loginPageContainer.classList.toggle('disable');
     loginPageBackground.classList.toggle('disable');
     returnToHomeBtn.classList.toggle('disable');
     loginPageBackground.style.display = "none";
     loginPageContainer.classList.remove('right-panel-active');
     toggleHomePage();
+  } else {
+    loginFailMessage.classList.remove("disable");
+  }
+}
+
+// *******************************
+//     ABOUT PAGE
+// *******************************
+let aboutPageContainer = document.getElementById('about-container');
+let aboutPageBackground = document.getElementById('about-bg');
+let aboutPageReturnBtn = document.getElementById('about-return-btn');
+
+function openAbout(){
+  aboutPageContainer.classList.toggle('disable');
+  aboutPageBackground.classList.toggle('disable');
+  aboutPageReturnBtn.classList.toggle('disable');
+  disableLandingElements();
+}
+
+function backFromAboutPage(){
+  aboutPageContainer.classList.toggle('disable');
+  aboutPageBackground.classList.toggle('disable');
+  aboutPageReturnBtn.classList.toggle('disable');
+  enableLandingElements();
+}
+
+// *******************************
+//     CHAT AREA IN HOME PAGE
+// *******************************
+
+document.querySelector('.chat-body[data-chat=person1]').classList.add('active-chat');
+document.querySelector('.person[data-chat=person1]').classList.add('active');
+document.querySelector('.chat-name').innerHTML = document.querySelector('.person-name').innerText;
+
+let friends = {
+    list: document.querySelector('ul.message-list'),
+    all: document.querySelectorAll('.message-container .person'),
+    name: ''
+},
+chat = {
+    container: document.querySelector('.right-side-chat'),
+    current: null,
+    person: null,
+    name: document.querySelector('.right-side-chat .chat-top .chat-name')
+}
+
+friends.all.forEach(f => {
+    f.addEventListener('click', () => {
+        f.classList.contains('active') || setAciveChat(f)
+    })
+});
+
+function setAciveChat(f) {
+    friends.list.querySelector('.active').classList.remove('active')
+    f.classList.add('active')
+    chat.current = chat.container.querySelector('.active-chat')
+    chat.person = f.getAttribute('data-chat')
+    chat.current.classList.remove('active-chat')
+    chat.container.querySelector('[data-chat="' + chat.person + '"]').classList.add('active-chat')
+    friends.name = f.querySelector('.person-name').innerText
+    chat.name.innerHTML = friends.name
+}
+
+
+function toggleChat(){
+  if(count==0){
+    swipeArea.style.display = 'none';
+    chatArea.classList.toggle('disable');
+    messageContainer.classList.toggle('disable');
+    count++;
+  }else{
+    swipeArea.style.display = 'flex';
+    chatArea.classList.toggle('disable');
+    messageContainer.classList.toggle('disable');
+    count=0;
   }
 }
