@@ -899,12 +899,12 @@ body{
 }
 
 #logout-btn {
-    margin-top: 140px;
+    margin-top: 100px;
 }
 
 .home-content {
     position: relative;
-    background: linear-gradient(to right, #5d5a6d 0%, #cfc5ff 50%);
+    background: linear-gradient(to right, #a39dc5 0%, #cfc5ff 50%, #a39dc5 100%);
     height: 100%;
     top: 0;
     left: 78px;
@@ -928,7 +928,6 @@ body{
     height: 100%;
     background: linear-gradient(to bottom, #ffffff 0%, #999 100%);
     margin: 0;
-    padding-top: 10px;
 }
 
 .message-container img {
@@ -939,10 +938,12 @@ body{
 
 .match-list {
     height: 15%;
+    padding-top: 5px;
     background-color: rgb(230, 230, 230);
     overflow-x: auto;
     display: flex;
     align-items: center;
+    border-bottom: 0.5px solid rgb(218, 218, 218);
 }
 
 .match-list::-webkit-scrollbar {
@@ -956,6 +957,7 @@ body{
 .message-list {
     left: 0;
     padding: 0;
+    margin-top: 0;
 }
 
 .message-list img {
@@ -964,7 +966,6 @@ body{
 }
 
 .person {
-    /* margin: 12px auto; */
     padding: 10px 0 10px 10px;
     color: rgb(61, 61, 61);
     cursor: pointer;
@@ -977,7 +978,12 @@ body{
 }
 
 .person:hover {
-    background-color: #F20089;
+    background-color: #2D00F7;
+    color: #fff;
+}
+
+.person.active {
+    background-color: #2D00F7;
     color: #fff;
 }
 
@@ -997,10 +1003,10 @@ body{
 
 /* 2.3 SWIPE AREA */
 .swipe-area-container {
-    width: 60%;
+    width: 100%;
     height: 100%;
     position: fixed;
-    right: 3%;
+    right: 0;
     top: 0;
     z-index: 99;
     display: flex;
@@ -1096,11 +1102,237 @@ body{
     color: #24577e;
 }
 
+#no-one-new{
+    position: absolute;
+    top: 45%;
+    right: 50%;
+    transform: translate(50%);
+    width: 150px;
+    height: 140px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 1.5rem;
+}
 
-/* ================== 
-====== SIGN-UP ======
-====== LOG-IN =======
-===================== */
+#no-one-new p {
+    margin: auto;
+    font-size: 1rem
+}
+
+/* 2.4 CHAT AREA */
+.right-side-chat {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 70%;
+    height: 100%;
+    background:rgb(175, 175, 175);
+    overflow: hidden;
+}
+
+.chat-top {
+    width: 100%;
+    height: 30px;
+    padding: 15px 30px;
+    background-color: #eceff1;
+}
+
+.back-btn.chat {
+    position: relative;
+    left: 0;
+    top: -5px;
+}
+
+.back-btn.chat:hover {
+    color: #5a0041;
+}
+
+.chat-name {
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: rgb(61, 61, 61);
+    margin-left: 10px;
+}
+
+.chat-body {
+    position: relative;
+    display: none;
+    padding: 20px 35px 92px;
+    height: calc(100% - 30px);
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.chat-body.active-chat{
+    display: flex;
+}
+
+.chat-body.active-chat .bubble {
+    transition-timing-function: cubic-bezier(.4,-.04, 1, 1);
+    animation-duration: .15s;
+}
+
+.write-message-input {
+    position: absolute;
+    bottom: 29px;
+    left: 30px;
+    height: 42px;
+    padding-left: 8px;
+    border: 1px solid var(--light);
+    background-color: #eceff1;
+    width: calc(100% - 58px);
+    border-radius: 5px;
+}
+
+.write-message-input input {
+    font-size: 16px;
+    width: 347px;
+    height: 40px;
+    padding: 0 10px;
+    border: 0;
+    outline: none;
+    background-color: #eceff1;
+    color: #1a1a1a;
+}
+
+.write-link {
+    float: right;
+    width: 20px;
+    height: 42px;
+    margin: 10px 12px;
+    color: rgb(36, 36, 36);
+}
+
+.write-link i {
+    font-size: 1.2rem;
+}
+
+.bubble {
+    font-size: 16px;
+    position: relative;
+    display: inline-block;
+    clear: both;
+    margin-bottom: 8px;
+    padding: 13px 14px;
+    vertical-align: top;
+    border-radius: 5px;
+}
+
+.bubble::before {
+    position: absolute;
+    top: 19px;
+    display: block;
+    width: 8px;
+    height: 6px;
+    content: '\00a0';
+    transform: rotate(29deg) skew(-35deg);
+}
+
+.bubble.you {
+    float: left;
+    color: #FFF;
+    background-color: #8900F2;
+    align-self: flex-start;
+    animation-name: slideFromLeft;
+}
+
+.bubble.you::before {
+    left: -3px;
+    background-color: #8900F2;
+}
+
+.bubble.me {
+    float: right;
+    color: #1a1a1a;
+    background-color: #eceff1;
+    align-self: flex-end;
+    animation-name: slideFromRight;
+}
+
+.bubble.me::before {
+    right: -3px;
+    background-color: #eceff1;
+}
+
+.conversation-start {
+    position: relative;
+    width: 100%;
+    margin-bottom: 27px;
+    text-align: center;
+    color: rgb(51, 51, 51);
+}
+
+.conversation-start span {
+    font-size: 14px;
+    display: inline-block;
+}
+
+.conversation-start span::before {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    display: inline-block;
+    width: 30%;
+    height: 1px;
+    content: '';
+    background-color: rgb(100, 100, 100);
+}
+.conversation-start span::after {
+    position: absolute;
+    top: 10px;
+    right: 0;
+    display: inline-block;
+    width: 30%;
+    height: 1px;
+    content: '';
+    background-color: rgb(100, 100, 100);
+}
+
+@keyframes slideFromLeft {
+    0% {
+        margin-left: -200px;
+        opacity: 0;
+    }
+    100% {
+        margin-left: 0;
+        opacity: 1;
+    }
+}
+@-webkit-keyframes slideFromLeft {
+    0% {
+        margin-left: -200px;
+        opacity: 0;
+    }
+    100% {
+        margin-left: 0;
+        opacity: 1;
+    }
+}
+@keyframes slideFromRight {
+    0% {
+        margin-right: -200px;
+        opacity: 0;
+    }
+    100% {
+        margin-right: 0;
+        opacity: 1;
+    }
+}
+@-webkit-keyframes slideFromRight {
+    0% {
+        margin-right: -200px;
+        opacity: 0;
+    }
+    100% {
+        margin-right: 0;
+        opacity: 1;
+    }
+}
+
+/* ================================ 
+============= SIGN-UP =============
+============= LOG-IN ==============
+=================================== */
 
 #login-page-bg {
     width: 100%;
@@ -1322,4 +1554,48 @@ button:focus {
 
 .back-btn:active{
     color: #6f00ff;
+}
+
+.login-fail {
+    color: brown;
+    padding-bottom: 10px;
+}
+
+
+/* ============================== 
+============= ABOUT ============= 
+================================= */
+#about-bg{
+    background: linear-gradient(45deg, #2900dd 10%, #5300be 20%, #6b00bd 30%, #68009c 40%, #8700b1 50%, #85009c 60%, #a000a0 70%, #a7008b 80%, #a70077 90%, #8a004e 100%);
+    width: 100vw;
+    height: 100vh;
+    overflow-y: hidden;
+    color: #FFF;
+}
+
+#about-container{
+    width: 70%;
+    height: 80%;
+    margin: 40px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.171);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 30px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    transform: rotate(-10deg);
+}
+
+#about-container p {
+    font-size: 1.3rem;
+    transform: rotate(10deg) translate(25px, 80px);
+}
+#about-container span {
+    display: block;
+    transform: rotate(10deg) translate(25px, 80px);
+}
+
+#about-return-btn {
+    color: #FFF;
 }
