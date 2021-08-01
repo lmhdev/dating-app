@@ -22,14 +22,14 @@
             <a href="#" class="link" onclick="openSignin()"><i class="fas fa-user"></i> LOGIN</a>
             <a href="#features" class="link">FEATURES</a>
             <a href="#testimonials" class="link">TESTIMONIALS</a>
-            <a href="#" class="link">ABOUT</a>
+            <a href="#" class="link" onclick="openAbout()">ABOUT</a>
             <a class="icon" id="icon" onclick="opennav()"><i class="fa fa-bars"></i></a>
             <div class="hamburger">
                 <a href="#" class="link-hamburger" onclick="openSignUp()">SIGNUP</a>
                 <a href="#" class="link-hamburger" onclick="openSignin()">LOGIN</a>
                 <a href="#features" class="link-hamburger">FEATURES</a>
                 <a href="#testimonials" class="link-hamburger">TESTIMONIALS</a>
-                <a href="#" class="link-hamburger">ABOUT</a>
+                <a href="#" class="link-hamburger" onclick="openAbout()">ABOUT</a>
             </div>
         </nav>
     </header>
@@ -190,7 +190,15 @@
             </li>
 
             <li>
-                <a href="">
+                <a href="#" onclick="toggleChat()">
+                    <i class="far fa-comment-dots"></i>
+                    <span class="link-name">Message</span>
+                </a>
+                <span class="tooltip">Message</span>
+            </li>
+
+            <li>
+                <a href="javascript:;">
                     <i class="fas fa-id-card"></i>
                     <span class="link-name">Profile</span>
                 </a>
@@ -198,7 +206,7 @@
             </li>
 
             <li>
-                <a href="">
+                <a href="javascript:;">
                     <i class="far fa-question-circle"></i>
                     <span class="link-name">Supports</span>
                 </a>
@@ -206,7 +214,7 @@
             </li>
 
             <li>
-                <a href="">
+                <a href="javascript:;">
                     <i class="fas fa-user-circle"></i>
                     <span class="link-name">Account</span>
                 </a>
@@ -214,14 +222,14 @@
             </li>
 
             <li>
-                <a href="">
+                <a href="javascript:;">
                     <i class="fas fa-cog"></i>
                     <span class="link-name">Setting</span>
                 </a>
                 <span class="tooltip">Setting</span>
             </li>
             <li id="logout-btn">
-                <a href="" onclick="logout()">
+                <a href="#" onclick="logout()">
                     <i class="fas fa-sign-out-alt"></i>
                     <span class="link-name">Log Out</span>
                 </a>
@@ -232,7 +240,7 @@
 
     <div class="home-content">
         <!-- MATCHES & MESSAGES LIST -->
-        <div class="message-container">
+        <div class="message-container disable">
             <div class="match-list">
                     <div class="match-item">
                         <a href="">
@@ -278,26 +286,32 @@
             </div>
 
             <ul class="message-list">
-                <li class="person">
+                <li class="person" data-chat="person1">
                     <img src="Img\Match Profile\Matches\Alice Head.jpg" alt="">
                     <span class="person-name">Alice</span>
-                    <span class="chat-preview">Hi there</span>
+                    <span class="chat-preview">How's your sunday going?</span>
                 </li>
-                <li class="person">
+                <li class="person" data-chat="person2">
                     <img src="Img\Match Profile\Matches\Jennifer Head.jpg" alt="">
                     <span class="person-name">Jennifer</span>
-                    <span class="chat-preview">Hi how are you</span>
+                    <span class="chat-preview">I've forgotten how it felt before the lock down</span>
                 </li>
-                <li class="person">
+                <li class="person" data-chat="person3">
                     <img src="Img\Match Profile\Matches\Sarah Head.jpg" alt="">
                     <span class="person-name">Sarah</span>
-                    <span class="chat-preview">How you doing stranger</span>
+                    <span class="chat-preview">But you probably need company</span>
                 </li>
             </ul>
         </div>
 
         <!-- SWIPE AREA -->
+        
         <div class="swipe-area-container">
+            <div id="no-one-new">
+                <i class="far fa-frown"></i>
+                <p>Please check back tomorrow!</p>
+            </div>
+            
             <div class="swipe-cards-stack">
 
             </div>
@@ -307,6 +321,85 @@
                 <button id="love"><i class="fas fa-heart"></i></button>
             </div>
         </div>
+
+        <!-- CHAT AREA -->
+        <div class="right-side-chat disable">
+            <div class="chat-top">
+                <span class="chat-name"></span>
+            </div>
+
+            <div class="chat-body" data-chat="person1">
+                <div class="conversation-start">
+                    <span>Today, 7:48 PM</span>
+                </div>
+
+                <div class="bubble you">
+                    Hi there
+                </div>
+                <div class="bubble you">
+                    How's your sunday going?
+                </div>
+            </div>
+
+            <div class="chat-body" data-chat="person2">
+                <div class="conversation-start">
+                    <span>Today, 5:38 PM</span>
+                </div>
+                <div class="bubble you">
+                    Hello
+                </div>
+                <div class="bubble you">
+                    Your profile cracked me up
+                </div>
+                <div class="bubble me">
+                    ... about that part.
+                </div>
+                <div class="bubble me">
+                    Don't drink and write
+                </div>
+                <div class="bubble you">
+                    Haha
+                </div>
+                <div class="bubble you">
+                    I've forgotten how it felt before the lock down
+                </div>
+            </div>
+
+            <div class="chat-body" data-chat="person3">
+                <div class="conversation-start">
+                    <span>Today, 3:38 AM</span>
+                </div>
+                <div class="bubble you">
+                    Hey stranger
+                </div>
+                <div class="bubble you">
+                    How you doing
+                </div>
+                <div class="bubble me">
+                    Just got vaccinated today
+                </div>
+                <div class="bubble me">
+                    Now I'm celebrating with some soju
+                </div>
+                <div class="bubble you">
+                    Lol it’s not that bad...
+                </div>
+                <div class="bubble you">
+                    But you probably need company
+                </div>
+            </div>
+
+            <div class="write-message-input">
+                <input type="text" />
+                <a href="javascript:;" class="write-link send" style="padding-right: 10px;">
+                    <i class="far fa-paper-plane"></i>
+                </a>
+                <a href="javascript:;" class="write-link smiley">
+                    <i class="far fa-smile"></i>
+                </a>
+            </div>
+        </div>
+
     </div>
 </div>
 
@@ -347,7 +440,8 @@
                 <span>ID: <b>admin@wink</b> &nbsp; - &nbsp; Password: <b>wink1234</b> </span>
                 <input type="email" placeholder="Email" id="login-id"/>
                 <input type="password" placeholder="Password" id="login-pw"/>
-                <button onclick="signin()">Sign In</button>
+                <span class="login-fail disable">The email address or password is incorrect!</span>
+                <button id="signin-auth-btn">Sign In</button>
             </form>
         </div>
         <div class="overlay-container">
@@ -366,8 +460,27 @@
         </div>
     </div>
     </div>
-        
-        <!--FOOTER-->
+
+<!--**********************************************
+                ABOUT PAGE
+***********************************************-->
+
+<div id="about-bg" class="disable">
+    <div class="back-btn about disable" id="about-return-btn" onclick="backFromAboutPage()">
+        <i class="fas fa-chevron-circle-left"></i>
+    </div>
+
+    <div id="about-container" class="disable">
+        <p>Project Developer: Le Minh Hoang</p>
+        <p>Project Supervisor: Vuong Tuan Khanh</p>
+        <span>This Single Page Application project was created using plain HTML, CSS and JS. Please login using given credential to explore further.</span>
+    </div>
+</div>
+
+
+<!--**********************************************
+                    FOOTER
+***********************************************-->
 <footer>
     <div class="footer">
         <div class="row">
