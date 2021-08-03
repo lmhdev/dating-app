@@ -63,11 +63,13 @@ function opennav(){
     navTop.style.height="200px";
     document.getElementById("icon").style.color="#2D00F7";
     document.querySelector(".hamburger").style.display = "flex";
+    document.querySelector(".label").style.display = "none";
     count++;
   }else{
     navTop.style.height="79px";
     document.getElementById("icon").style.color="#FFF";
     document.querySelector(".hamburger").style.display = "none";
+    document.querySelector(".label").style.display = "flex";
     count=0;
   }
 }
@@ -76,6 +78,7 @@ window.addEventListener('resize', closenav);
 function closenav(){
   if (window.matchMedia('screen and (min-width: 720px)').matches){
     document.querySelector(".hamburger").style.display = "none";
+    document.querySelector(".label").style.display = "flex";
     navTop.style.height="79px";
     count=0;
   }
@@ -259,5 +262,36 @@ function toggleChat(){
     chatArea.classList.toggle('disable');
     messageContainer.classList.toggle('disable');
     count=0;
+  }
+}
+
+// *******************************
+//           DARK MODE
+// *******************************
+
+const checkbox = document.getElementById("checkbox");
+
+checkbox.addEventListener('change', toggleDarkMode);
+
+function toggleDarkMode() {
+  document.body.classList.toggle('dark');
+  navTop.classList.toggle('dark');
+  sectionHero.classList.toggle('dark');
+  sectionOne.classList.toggle('dark');
+  sectionTwo.classList.toggle('dark');
+  sectionThree.classList.toggle('dark');
+  switchHeroImg();
+}
+
+let status = 0;
+function switchHeroImg() {
+  if(status == 0){
+    document.querySelector("img.hero-img").src = "Img\\Women working from home Dark.png";
+    document.querySelector("img.section3-img").src = "Img\\Computer video Dark.png";
+    status++;
+  }else{
+    document.querySelector("img.hero-img").src = "Img\\Work from home.png";
+    document.querySelector("img.section3-img").src = "Img\\Friends make a video call_5509844.png";
+    status = 0;
   }
 }
