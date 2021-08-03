@@ -1,3 +1,17 @@
+:root {
+    --darktheme-bg: #121212;
+    --darktheme-secondary: #1f1b24;
+    --darktheme-light-purple: #BB86FC;
+    --darktheme-dark-purple: #3700B3;
+    --blue: #2D00F7;
+    --steel-pink: #D100D1;
+    --magenta-process: #F20089;
+}
+
+
+
+
+
 body{
     margin: 0;
     overflow-x:hidden;
@@ -392,7 +406,7 @@ body{
     .section2{
     width:100%;
     background:#eaeff9;
-    padding:10vh 0;
+    padding: 2vh 0 10vh 0;
     }
 
     .section2-title {
@@ -1593,9 +1607,154 @@ button:focus {
 }
 #about-container span {
     display: block;
+    margin-bottom: 25px;
     transform: rotate(10deg) translate(25px, 80px);
+}
+
+#about-container span a {
+    color: #FFF;
+    font-size: 1rem;
+}
+
+#about-container span button {
+    border: none;
 }
 
 #about-return-btn {
     color: #FFF;
+}
+
+
+/* ================================== 
+============= DARK MODE ============= 
+================================== */
+body.dark,
+.section2.dark {
+    background-color: var(--darktheme-bg);
+}
+
+header .nav.dark{
+    background:rgb(122, 0, 69);
+}
+
+/********* THEME SWITCH BUTTON *********/
+
+.checkbox {
+    opacity: 0;
+    position: absolute;
+}
+
+
+.label {
+    height: 26px;
+    width: 50px;
+    padding: 5px;
+    background-color: #111;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 50px;
+    box-sizing: border-box;
+    position: relative;
+    transform: scale(1.5);
+}
+
+.ball {
+    height: 22px;
+    width: 22px;
+    background-color: rgba(240, 0, 136, 1);
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    border-radius: 50%;
+    transition: transform 0.2s linear;
+}
+
+.nav.dark .ball {
+    background-color: rgb(122, 0, 69);
+}
+
+.checkbox:checked + .label .ball {
+    transform: translateX(24px);
+}
+.fa-moon {
+    color: var(--darktheme-light-purple);
+}
+.fa-sun {
+    color: #ff47af;
+}
+
+/********* BODY DARK MODE *********/
+
+.container.dark {
+    background-image: url("https://i.ibb.co/K6wS1R0/Bg-Dark.png");
+}
+
+.container.dark img {
+    width: 90%;
+}
+
+.container.dark em {
+    color:#FFF;
+}
+
+.container.dark .ml9 {
+    color: var(--darktheme-light-purple);
+}
+
+.container.dark .sub-title {
+    color: var(--darktheme-light-purple);
+}
+
+.container.dark .btn1 {
+    background-color: var(--darktheme-dark-purple);
+}
+
+.section1.dark .card {
+    box-shadow: 4px 8px 32px 4px rgba(42, 49, 148, 0.37);
+}
+
+.section1.dark .card_1 {
+    background: rgba(235, 0, 133, 0.5);
+}
+
+.section1.dark .card_2 {
+    background: rgba(45, 0, 247, 0.5);
+}
+
+.section1.dark .card_3 {
+    background: rgba(178, 0, 209, 0.5);
+}
+
+.section2.dark {
+    padding-top: 0;
+}
+
+.section2.dark .section2-title {
+    color: var(--darktheme-light-purple);
+    font-size: 2.4rem;
+}
+
+.section2.dark .section2-sub-title {
+    color: var(--darktheme-light-purple);
+}
+
+.section2.dark .card {
+    background: var(--darktheme-secondary);
+}
+
+.section2.dark .card i {
+    color: var(--darktheme-dark-purple);
+}
+
+.section2.dark .card .sub-title {
+    color: rgb(224, 224, 224);
+}
+
+.section2.dark .card p {
+    color: rgb(168, 168, 168);
+}
+
+.section3.dark .section3-paragraph {
+    color: var(--darktheme-light-purple);
 }
