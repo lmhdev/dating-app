@@ -1744,15 +1744,16 @@ header .nav.dark{
 }
 
 .section2.dark .card i {
-    color: var(--darktheme-dark-purple);
+    /* color: var(--darktheme-dark-purple); */
+    color: #6223f5;
 }
 
 .section2.dark .card .sub-title {
-    color: rgb(224, 224, 224);
+    color: rgb(255, 255, 255);
 }
 
 .section2.dark .card p {
-    color: rgb(168, 168, 168);
+    color: rgb(218, 218, 218);
 }
 
 .section3.dark .section3-paragraph {
