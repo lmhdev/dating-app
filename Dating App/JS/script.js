@@ -273,13 +273,10 @@ const checkbox = document.getElementById("checkbox");
 
 checkbox.addEventListener('change', toggleDarkMode);
 
+let toSwitch = [document.body, navTop, sectionHero, sectionOne, sectionTwo, sectionThree];
+
 function toggleDarkMode() {
-  document.body.classList.toggle('dark');
-  navTop.classList.toggle('dark');
-  sectionHero.classList.toggle('dark');
-  sectionOne.classList.toggle('dark');
-  sectionTwo.classList.toggle('dark');
-  sectionThree.classList.toggle('dark');
+  toSwitch.forEach(element => element.classList.toggle('dark'));
   switchHeroImg();
 }
 
