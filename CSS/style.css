@@ -1624,6 +1624,10 @@ button:focus {
     color: #FFF;
 }
 
+.btn1.demo {
+    background-image: linear-gradient(to top, #750062, #560081);
+    margin-left: 10px;
+}
 
 /* ================================== 
 ============= DARK MODE ============= 
